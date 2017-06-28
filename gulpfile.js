@@ -4,21 +4,29 @@ var gulp = require('gulp'),
 	concat = require('gulp-concat'),
 	uglify = require('gulp-uglify'),
 	rename = require('gulp-rename'),
-		sass = require('gulp-sass'),
-		maps = require('gulp-sourcemaps'),
-		autoprefixer = require('gulp-autoprefixer'),
-		del = require('del'),
-		babel = require("gulp-babel"),
-		cleanCSS = require('gulp-clean-css');
+	sass = require('gulp-sass'),
+	maps = require('gulp-sourcemaps'),
+	autoprefixer = require('gulp-autoprefixer'),
+	del = require('del'),
+	babel = require("gulp-babel"),
+	cleanCSS = require('gulp-clean-css'),
+	htmlreplace = require('gulp-html-replace');		
 	
+
+var jsPaths = [
+	// 'js/polyfills.js'
+  // 'node_modules/jquery/dist/jquery.js',
+  // 'js/smooth-scroll.js',
+  // 'js/plugins.js',  
+  'js/main.js'
+];
 
 gulp.task('clean', function(cb) {
     del(['js/**'], cb);
 });
 
 gulp.task("concatScripts", function(){
-		return gulp.src([
-			'src/javascript/main.js'])
+		return gulp.src(jsPaths)
 		.pipe(maps.init())
 		.pipe(concat('app.js'))
 		.pipe(maps.write('./'))		
@@ -61,9 +69,18 @@ gulp.task('watchFiles', function() {
 	gulp.watch('src/javascript/main.js', ['concatScripts'])
 });
 
-gulp.task('build', ["minifyScripts", "minifyCss"], function(){
-	console.log("Remember to change index.html links to minified versions");
-	return gulp.src(["js/app.min.js", "index.html", "img/**", "fonts/**"] , { base: "./"})
+gulp.task('htmlUpdate', function() {
+  gulp.src('index.html')
+    .pipe(htmlreplace({
+        'css': 'styles.min.css',
+        'js': 'js/app.min.js'
+    }))
+    .pipe(gulp.dest('dist/'));
+});
+
+gulp.task('build', ["minifyScripts", "minifyCss", "htmlUpdate"], function(){
+	console.log("Build has been created in /dist");
+	return gulp.src(["js/app.min.js", "img/**", "fonts/**"] , { base: "./"})
 			.pipe(gulp.dest('dist'));
 });
 

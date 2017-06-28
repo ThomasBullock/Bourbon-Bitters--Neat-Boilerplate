@@ -3,7 +3,7 @@ Starter Template For Bourbon Neat using Gulp
 
 Technologies used
 
- [Bourbon](http://bourbon.io/)/[Neat](http://neat.bourbon.io/) 
+[Bourbon](http://bourbon.io/)/[Neat v2](http://neat.bourbon.io/)Bitters(http://bitters.bourbon.io/) 
 
 ## Notes
 
@@ -22,7 +22,7 @@ to dist folder
 ## Folder Structure
 
 ```
-Gulp-Build-System/
+Bourbon-Bitters-Neat-Boilerplate/
     README.md
     .babelrc
     gulpfile.js
@@ -38,11 +38,16 @@ Gulp-Build-System/
         main.js
       sass/
         0-plugins/
+            base/
+            bourbon/
+            neat/
         1-base/
           mixins/
+          _variables.scss
         2-modules/
         3-layouts/
         styles.scss
     index.html
+    404.html
   
 ```

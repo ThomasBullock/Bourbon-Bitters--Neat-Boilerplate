@@ -1,1 +1,0 @@
-{"version":3,"sources":["main.js"],"names":[],"mappings":"AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;AACA","file":"app.js","sourcesContent":["(function(global){\n\nlet message = 'Application is running!'\n\nconsole.log(message)\n\t\n\t\n\t\t\n\t\n}(window));"]}

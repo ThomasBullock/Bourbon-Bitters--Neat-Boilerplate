@@ -72,7 +72,7 @@ gulp.task('watchFiles', function() {
 gulp.task('htmlUpdate', function() {
   gulp.src('index.html')
     .pipe(htmlreplace({
-        'css': 'styles.min.css',
+        'css': 'css/styles.min.css',
         'js': 'js/app.min.js'
     }))
     .pipe(gulp.dest('dist/'));
@@ -80,7 +80,7 @@ gulp.task('htmlUpdate', function() {
 
 gulp.task('build', ["minifyScripts", "minifyCss", "htmlUpdate"], function(){
 	console.log("Build has been created in /dist");
-	return gulp.src(["js/app.min.js", "img/**", "fonts/**"] , { base: "./"})
+	return gulp.src(["js/app.min.js", "js/modernizr-2.8.3.min.js", "img/**", "fonts/**"] , { base: "./"})
 			.pipe(gulp.dest('dist'));
 });
 
